@@ -12,14 +12,14 @@ require 'pry'
 # - Full control of private repos
 #
 # Your GitHub token:
-OCTO_TOKEN
+ENV['OCTO_TOKEN']
 
 # Your organization(s):
-FROM_ORG
-TO_ORG
+ENV['FROM_ORG']
+ENV['TO_ORG']
 
 # Connect to GitHub account
-client = Octokit::Client.new(access_token: MG_GH_TOKEN, auto_paginate: true)
+client = Octokit::Client.new(access_token: ENV['OCTO_TOKEN'], auto_paginate: true)
 
 # Load all the repos
 repos = client.repos(client.user.login)

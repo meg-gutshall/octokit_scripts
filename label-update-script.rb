@@ -13,10 +13,10 @@ require "pry"
 # - Full control of private repos
 #
 # Your GitHub token:
-MG_GH_TOKEN = ""
+ENV['OCTO_TOKEN']
 
 # Connect to GitHub account
-client = Octokit::Client.new(access_token: MG_GH_TOKEN, auto_paginate: true)
+client = Octokit::Client.new(access_token: ENV['OCTO_TOKEN'], auto_paginate: true)
 
 # List repos to apply labels to below
 repos = [
