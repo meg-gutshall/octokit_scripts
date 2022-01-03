@@ -12,11 +12,11 @@ require 'pry'
 # - Full control of private repos
 #
 # Your GitHub token:
-MG_GH_TOKEN = ""
+OCTO_TOKEN
 
 # Your organization(s):
-STUDY_KIT_ORG = "study-kit"
-CODEPANIONS_ORG = "codepanions"
+FROM_ORG
+TO_ORG
 
 # Connect to GitHub account
 client = Octokit::Client.new(access_token: MG_GH_TOKEN, auto_paginate: true)
