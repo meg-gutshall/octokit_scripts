@@ -58,7 +58,3 @@ end
 
 # Print success message
 puts "\n#{repos.count.to_s} repos were transferred!".colorize(:light_green)
-
-#Add Mona at the end
-# mona = client.octocat
-# puts mona
