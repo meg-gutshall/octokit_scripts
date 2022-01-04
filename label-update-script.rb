@@ -43,7 +43,7 @@ end
 puts "\nTotal number of search results: ".colorize(:light_magenta) + repos.count.to_s.colorize(:light_yellow)
 
 # This stopped me accidentally breaking everything, remove the "return" line to continue the program's execution.
-# return
+return
 
 # Remove labels
 old_labels = [
