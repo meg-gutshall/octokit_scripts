@@ -5,7 +5,7 @@ require "octokit"
 require "json"
 require "colorize"
 require "pry"
-require "dotenv"
+require "dotenv/load"
 
 ## Generate a token at:
 # https://github.com/settings/tokens
@@ -15,7 +15,8 @@ require "dotenv"
 # - User authentication
 
 # Connect to GitHub account
-client = Octokit::Client.new(access_token: ENV['OCTO_TOKEN'])
+client = Octokit::Client.new(:access_token => ENV['OCTO_TOKEN'])
+p client
 
 # Load all the repos
 repos = client.repos(client.user.login)
