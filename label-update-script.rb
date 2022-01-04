@@ -166,9 +166,9 @@ new_labels = [
 
 # Add my default labels
 repos.each do |repo|
-  client.transfer_repo(repo.full_name, STUDY_KIT_ORG, {
-    accept: Octokit::Preview::PREVIEW_TYPES[:transfer_repository]
-  })
+  new_labels.each do |new_label|
+    Octokit.add_label(repo, new_label[name], new_label[color], { description: new_label[description] })
+  end
 end
 
 # Print success message
