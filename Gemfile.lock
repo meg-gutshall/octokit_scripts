@@ -28,6 +28,7 @@ GEM
     json (2.6.1)
     method_source (1.0.0)
     multipart-post (2.1.1)
+    netrc (0.11.0)
     octokit (4.21.0)
       faraday (>= 0.9)
       sawyer (~> 0.8.0, >= 0.5.3)
@@ -47,6 +48,7 @@ DEPENDENCIES
   colorize (~> 0.8.1)
   dotenv (~> 2.7, >= 2.7.6)
   json (~> 2.6, >= 2.6.1)
+  netrc (~> 0.11.0)
   octokit (~> 4.0)
   pry (~> 0.14.1)
 
