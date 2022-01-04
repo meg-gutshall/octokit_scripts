@@ -16,16 +16,21 @@ require "dotenv/load"
 
 # Connect to GitHub account
 client = Octokit::Client.new(:access_token => ENV['OCTO_TOKEN'])
-p client
+# p client
+
+# Fetch the user
+user = client.user
+# p user
 
 # Load all the repos
-repos = client.repos(client.user.login)
+repos = client.repos(user.login)
+# p repos.count
 
 # Select repo(s) you're going to change
 # ! Be sure to downcase the search parameter
 # May want to use Regex here
 repos.select! do |repo|
-  repo.name.downcase.include?('tester')
+  repo.name.downcase.include?('portfolio')
 end
 
 # Tell us which repo(s) we've selected
