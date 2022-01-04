@@ -43,7 +43,7 @@ end
 puts "\nTotal number of search results: ".colorize(:light_magenta) + repos.count.to_s.colorize(:light_yellow)
 
 # This stopped me accidentally breaking everything, remove the "return" line to continue the program's execution.
-return
+# return
 
 # Remove labels
 old_labels = [
@@ -61,104 +61,104 @@ old_labels = [
 # Remove GitHub's default labels
 repos.each do |repo|
   old_labels.each do |old_label|
-    Octokit.delete_label!(repo, old_label)
+    client.delete_label!(repo.full_name, old_label)
   end
 end
 
 # Create default labels
 new_labels = [
   {
-    name: "accessibility :wheelchair:",
+    label: "accessibility :wheelchair:",
     color: "C93377",
     description: "Follow a11y best practices"
   },
   {
-    name: "dependencies :deciduous_tree:",
+    label: "dependencies :deciduous_tree:",
     color: "EE1C75",
     description: "Pull requests that update a dependency file"
   },
   {
-    name: "good first issue :100:",
+    label: "good first issue :100:",
     color: "2074C4",
     description: "Good for newcomers"
   },
   {
-    name: "help wanted :sos:",
+    label: "help wanted :sos:",
     color: "D93F0B",
     description: "Up for grabs"
   },
   {
-    name: "high priority :rotating_light:",
+    label: "high priority :rotating_light:",
     color: "B60205",
     description: "Highest priority issues"
   },
   {
-    name: "status: blocked :no_entry_sign:",
+    label: "status: blocked :no_entry_sign:",
     color: "782975",
     description: "Something else is blocking this"
   },
   {
-    name: "status: on hold :hand:",
+    label: "status: on hold :hand:",
     color: "375071",
     description: "Waiting on a decision or review"
   },
   {
-    name: "status: pending :clock1030:",
+    label: "status: pending :clock1030:",
     color: "0D6E0E",
     description: "In a waiting state"
   },
   {
-    name: "type: architecture :classical_building:",
+    label: "type: architecture :classical_building:",
     color: "7057FF",
     description: "Changes to code architecture"
   },
   {
-    name: "type: bug :bug:",
+    label: "type: bug :bug:",
     color: "E21D20",
     description: "Something isn't working"
   },
   {
-    name: "type: chore :broom:",
+    label: "type: chore :broom:",
     color: "1D7CBB",
     description: "Misc."
   },
   {
-    name: "type: content :speech_balloon:",
+    label: "type: content :speech_balloon:",
     color: "C83462",
     description: "Concerning text and literals"
   },
   {
-    name: "type: documentation :bookmark_tabs:",
+    label: "type: documentation :bookmark_tabs:",
     color: "5A44A0",
     description: "Improvements or additions to documentation"
   },
   {
-    name: "type: enhancement :sparkles:",
+    label: "type: enhancement :sparkles:",
     color: "026A74",
     description: "New feature or request"
   },
   {
-    name: "type: maintenance :wrench:",
+    label: "type: maintenance :wrench:",
     color: "7D2B61",
     description: "Fixes to and refactoring codebase"
   },
   {
-    name: "type: needs discussion :speaking_head:",
+    label: "type: needs discussion :speaking_head:",
     color: "0052CC",
     description: "Further information is needed"
   },
   {
-    name: "type: security :lock:",
+    label: "type: security :lock:",
     color: "E21D20",
     description: "Implement a security patch"
   },
   {
-    name: "type: testing :white_check_mark:",
+    label: "type: testing :white_check_mark:",
     color: "DB5942",
     description: "Add test specs"
   },
   {
-    name: "type: ui/ux :lipstick:",
+    label: "type: ui/ux :lipstick:",
     color: "1A8481",
     description: "Site styling and appearances"
   }
@@ -167,9 +167,9 @@ new_labels = [
 # Add my default labels
 repos.each do |repo|
   new_labels.each do |new_label|
-    Octokit.add_label(repo, new_label[name], new_label[color], { description: new_label[description] })
+    client.add_label(repo.full_name, new_label[:label], new_label[:color], { description: new_label[:description] })
   end
 end
 
 # Print success message
-puts "\n#{repos.count.to_s} repos were transferred!".colorize(:light_green)
+puts "\n#{repos.count.to_s} repos were relabeled!".colorize(:light_green)
