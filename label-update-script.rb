@@ -12,7 +12,6 @@ require "dotenv/load"
 #
 # Make sure it has a scope of:
 # - Full control of private repos
-# - User authentication
 
 # Connect to GitHub account
 client = Octokit::Client.new(:access_token => ENV['OCTO_TOKEN'], auto_paginate: true)
