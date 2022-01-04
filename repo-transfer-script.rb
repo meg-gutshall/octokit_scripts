@@ -1,31 +1,30 @@
 ## Docs: http://octokit.github.io/octokit.rb/
 
 # Run: gem install octokit colorize
-require 'octokit'
-require 'colorize'
-require 'pry'
+require "octokit"
+require "colorize"
+require "pry"
+require "dotenv/load"
 
 ## Generate a token at:
 # https://github.com/settings/tokens
 #
 # Make sure it has a scope of:
 # - Full control of private repos
-#
-# Your GitHub token:
-ENV['OCTO_TOKEN']
-
-# Your organization(s):
-ENV['FROM_ORG']
-ENV['TO_ORG']
 
 # Connect to GitHub account
-client = Octokit::Client.new(access_token: ENV['OCTO_TOKEN'], auto_paginate: true)
+client = Octokit::Client.new(:access_token => ENV['OCTO_TOKEN'], auto_paginate: true)
+# p client
+
+# Fetch the user
+user = client.user
+# p user
 
 # Load all the repos
-repos = client.repos(client.user.login)
+repos = client.repos(user.login)
 # search_params = {
-#   include: %i[v-000 rails intro],
-#   exclude: %i[js]
+  #   include: %i[v-000 rails intro],
+  #   exclude: %i[js]
 # }
 
 # Filter the list of repos you're going to transfer
@@ -51,7 +50,7 @@ return
 
 # Start transferring the repos to the new account
 repos.each do |repo|
-  client.transfer_repo(repo.full_name, STUDY_KIT_ORG, {
+  client.transfer_repo(repo.full_name, ENV['ORG_TOKEN'], {
     accept: Octokit::Preview::PREVIEW_TYPES[:transfer_repository]
   })
 end
