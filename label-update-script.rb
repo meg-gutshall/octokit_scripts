@@ -46,7 +46,7 @@ puts "\nTotal number of search results: ".colorize(:light_magenta) + repos.count
 return
 
 # Remove labels
-remove_labels = [
+old_labels = [
   "bug",
   "documentation",
   "duplicate",
@@ -60,107 +60,107 @@ remove_labels = [
 
 # Remove GitHub's default labels
 repos.each do |repo|
-  remove_labels.map do |repo, label|
-    Octokit.delete_label!(repo, label)
+  old_labels.each do |old_label|
+    Octokit.delete_label!(repo, old_label)
   end
 end
 
 # Create default labels
-default_labels = [
+new_labels = [
   {
-    "name": "accessibility :wheelchair:",
-    "description": "Follow a11y best practices",
-    "color": "C93377"
+    name: "accessibility :wheelchair:",
+    color: "C93377",
+    description: "Follow a11y best practices"
   },
   {
-    "name": "dependencies :deciduous_tree:",
-    "description": "Pull requests that update a dependency file",
-    "color": "EE1C75"
+    name: "dependencies :deciduous_tree:",
+    color: "EE1C75",
+    description: "Pull requests that update a dependency file"
   },
   {
-    "name": "good first issue :100:",
-    "description": "Good for newcomers",
-    "color": "2074C4"
+    name: "good first issue :100:",
+    color: "2074C4",
+    description: "Good for newcomers"
   },
   {
-    "name": "help wanted :sos:",
-    "description": "Up for grabs",
-    "color": "D93F0B"
+    name: "help wanted :sos:",
+    color: "D93F0B",
+    description: "Up for grabs"
   },
   {
-    "name": "high priority :rotating_light:",
-    "description": "Highest priority issues",
-    "color": "B60205"
+    name: "high priority :rotating_light:",
+    color: "B60205",
+    description: "Highest priority issues"
   },
   {
-    "name": "status: blocked :no_entry_sign:",
-    "description": "Something else is blocking this",
-    "color": "782975"
+    name: "status: blocked :no_entry_sign:",
+    color: "782975",
+    description: "Something else is blocking this"
   },
   {
-    "name": "status: on hold :hand:",
-    "description": "Waiting on a decision or review",
-    "color": "375071"
+    name: "status: on hold :hand:",
+    color: "375071",
+    description: "Waiting on a decision or review"
   },
   {
-    "name": "status: pending :clock1030:",
-    "description": "In a waiting state",
-    "color": "0D6E0E"
+    name: "status: pending :clock1030:",
+    color: "0D6E0E",
+    description: "In a waiting state"
   },
   {
-    "name": "type: architecture :classical_building:",
-    "description": "Changes to code architecture",
-    "color": "7057FF"
+    name: "type: architecture :classical_building:",
+    color: "7057FF",
+    description: "Changes to code architecture"
   },
   {
-    "name": "type: bug :bug:",
-    "description": "Something isn't working",
-    "color": "E21D20"
+    name: "type: bug :bug:",
+    color: "E21D20",
+    description: "Something isn't working"
   },
   {
-    "name": "type: chore :broom:",
-    "description": "Misc.",
-    "color": "1D7CBB"
+    name: "type: chore :broom:",
+    color: "1D7CBB",
+    description: "Misc."
   },
   {
-    "name": "type: content :speech_balloon:",
-    "description": "Concerning text and literals",
-    "color": "C83462"
+    name: "type: content :speech_balloon:",
+    color: "C83462",
+    description: "Concerning text and literals"
   },
   {
-    "name": "type: documentation :bookmark_tabs:",
-    "description": "Improvements or additions to documentation",
-    "color": "5A44A0"
+    name: "type: documentation :bookmark_tabs:",
+    color: "5A44A0",
+    description: "Improvements or additions to documentation"
   },
   {
-    "name": "type: enhancement :sparkles:",
-    "description": "New feature or request",
-    "color": "026A74"
+    name: "type: enhancement :sparkles:",
+    color: "026A74",
+    description: "New feature or request"
   },
   {
-    "name": "type: maintenance :wrench:",
-    "description": "Fixes to and refactoring codebase",
-    "color": "7D2B61"
+    name: "type: maintenance :wrench:",
+    color: "7D2B61",
+    description: "Fixes to and refactoring codebase"
   },
   {
-    "name": "type: needs discussion :speaking_head:",
-    "description": "Further information is needed",
-    "color": "0052CC"
+    name: "type: needs discussion :speaking_head:",
+    color: "0052CC",
+    description: "Further information is needed"
   },
   {
-    "name": "type: security :lock:",
-    "description": "Implement a security patch",
-    "color": "E21D20"
+    name: "type: security :lock:",
+    color: "E21D20",
+    description: "Implement a security patch"
   },
   {
-    "name": "type: testing :white_check_mark:",
-    "description": "Add test specs",
-    "color": "DB5942"
+    name: "type: testing :white_check_mark:",
+    color: "DB5942",
+    description: "Add test specs"
   },
   {
-    "name": "type: ui/ux :lipstick:",
-    "description": "Site styling and appearances",
-    "color": "1A8481"
+    name: "type: ui/ux :lipstick:",
+    color: "1A8481",
+    description: "Site styling and appearances"
   }
 ]
 
