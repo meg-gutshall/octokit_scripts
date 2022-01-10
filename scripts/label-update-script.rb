@@ -1,18 +1,3 @@
-## Docs: http://octokit.github.io/octokit.rb/
-
-# Run: gem install octokit colorize
-require "octokit"
-require "json"
-require "colorize"
-require "pry"
-require "dotenv/load"
-
-## Generate a token at:
-# https://github.com/settings/tokens
-#
-# Make sure it has a scope of:
-# - Full control of private repos
-
 # Connect to GitHub account
 client = Octokit::Client.new(:access_token => ENV['OCTO_TOKEN'], auto_paginate: true)
 # p client
