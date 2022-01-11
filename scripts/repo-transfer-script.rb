@@ -1,4 +1,14 @@
-# Connect to GitHub account
+require "dotenv/load"
+
+require "active_support"
+require "active_support/core_ext"
+
+require "octokit"
+require "colorize"
+require "pry"
+
+# !NOTE: Right now this script is set up to transfer repos from a user account to an organization account. Read the comments below carefully if you want to change it.
+
 client = Octokit::Client.new(:access_token => ENV['OCTO_TOKEN'], auto_paginate: true)
 # p client
 

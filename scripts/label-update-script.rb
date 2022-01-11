@@ -1,10 +1,11 @@
-# Connect to GitHub account
-client = Octokit::Client.new(:access_token => ENV['OCTO_TOKEN'], auto_paginate: true)
-# p client
+require "dotenv/load"
 
-# Fetch the user
-user = client.user
-# p user
+require "active_support"
+require "active_support/core_ext"
+
+require "octokit"
+require "colorize"
+require "pry"
 
 # Load all the repos
 repos = client.repos(user.login)
