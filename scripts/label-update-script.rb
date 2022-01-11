@@ -7,30 +7,27 @@ require "octokit"
 require "colorize"
 require "pry"
 
-# Load all the repos
+client = Octokit::Client.new(:access_token => ENV['OCTO_TOKEN'], auto_paginate: true)
+user = client.user
 repos = client.repos(user.login)
-# p repos.name
 
-# Select repo(s) you're going to change
-# ! Be sure to downcase the search parameter
-# May want to use Regex here
+# Set the `repo_name` variable below to hold your repo name as a string
+repo_name = "test"
+
 repos.select! do |repo|
-  repo.name.downcase.include?('tester')
+  repo.name.downcase.include?(repo_name)
 end
-
-# Tell us which repo(s) we've selected
 puts "\nYou've selected the following repos to relabel: \n".colorize(:light_magenta)
 
 repos.collect do |repo|
   puts repo.full_name.colorize(:bright_white) + "  >>  ".colorize(:light_yellow) + "Last updated on ".colorize(:light_magenta) + repo.updated_at.strftime("%m/%d/%Y").colorize(:light_yellow)
 end
-
 puts "\nTotal number of search results: ".colorize(:light_magenta) + repos.count.to_s.colorize(:light_yellow)
 
 # This stopped me accidentally breaking everything, remove the "return" line to continue the program's execution.
 return
 
-# Remove labels
+# Labels to remove
 old_labels = [
   "bug",
   "documentation",
@@ -43,14 +40,13 @@ old_labels = [
   "wontfix"
 ]
 
-# Remove GitHub's default labels
 repos.each do |repo|
   old_labels.each do |old_label|
     client.delete_label!(repo.full_name, old_label)
   end
 end
 
-# Create default labels
+# Labels to add
 new_labels = [
   {
     label: "accessibility :wheelchair:",
@@ -149,12 +145,9 @@ new_labels = [
   }
 ]
 
-# Add my default labels
 repos.each do |repo|
   new_labels.each do |new_label|
     client.add_label(repo.full_name, new_label[:label], new_label[:color], { description: new_label[:description] })
   end
 end
-
-# Print success message
 puts "\n#{repos.count.to_s} repos were relabeled!".colorize(:light_green)
