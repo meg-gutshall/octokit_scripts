@@ -3,6 +3,9 @@ task :environment do
   require "bundler"
   require "bundler/setup"
 
+  require "active_support"
+  require "active_support/core_ext"
+
   require "dotenv/load"
   require "dotenv/tasks"
 
