@@ -2,6 +2,8 @@
 
 This is a WIP repo to house some Octokit Ruby scripts I've created that automate actions I regularly need and mass actions in my GitHub accounts.
 
+**UPDATE as of 01/10/22:** I cleaned up the scripts a bit and tried to make the directions for using them clearer. Any open source commits are welcome, just please send PRs to the `dev` branch. Thank you!
+
 ## Usage
 
 Add a `.env` file to hold your GitHub Personal Authorization Tokens (PATs) and any other secrets you don't want to get out!
