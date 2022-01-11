@@ -6,7 +6,14 @@ This is a WIP repo to house some Octokit Ruby scripts I've created that automate
 
 ## Usage
 
-Add a `.env` file to hold your GitHub Personal Authorization Tokens (PATs) and any other secrets you don't want to get out!
+Running the script:
+
+```bash
+ruby scripts/label-update-script.rb
+ruby scripts/repo-transfer-script.rb
+```
+
+I **highly** suggest reading through the rest of the section below in case the code comments aren't enough. This is very much still a work in progress!
 
 ### Label Update Script
 
