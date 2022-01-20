@@ -65,4 +65,4 @@ Lastly, it's easy to create a PAT! Learn how by reading GitHub's article [_Creat
 
 ## Future Plans
 
-I would like to turn this into a Ruby gem or CLI at the very least. More details and [ideas](gem.md) can be found in my [future-features](/docs/future-features.md) file.
+I would like to turn this into a Ruby gem or CLI at the very least. More details and ideas can be found in my [future-features](/docs/future-features.md) file.
