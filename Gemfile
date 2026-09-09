@@ -11,5 +11,5 @@ gem "colorize"
 gem "rake"
 
 group :development do
-  gem "debug"
+  gem "pry"
 end
