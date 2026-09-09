@@ -11,11 +11,18 @@ client = Octokit::Client.new(:access_token => ENV['OCTO_TOKEN'], auto_paginate: 
 user = client.user
 repos = client.repos(user.login)
 
-# Set the `repo_name` variable below to hold your repo name as a string
-repo_name = "test"
+# Uncomment two lines below if relabeling repos from a user account
+# user = client.user
+# repos = client.repos(user.login)
+# Uncomment two lines below if relabeling repos from an organization account
+from_org_name = "virtual-coffee"
+repos = client.org_repos(from_org_name)
+
+# Set the `search_params` variable below to hold your repo name as a string
+search_params = "virtualcoffee"
 
 repos.select! do |repo|
-  repo.name.downcase.include?(repo_name)
+  repo.name.downcase.include?(search_params)
 end
 puts "\nYou've selected the following repos to relabel: \n".colorize(:light_magenta)
 
