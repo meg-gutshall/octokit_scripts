@@ -151,9 +151,108 @@ new_labels = [
     description: "Site styling and appearances"
   }
 ]
+new_vc_labels = [
+  {
+    name: "accessibility",
+    color: "0366d6",
+    description: "Follows a11y best practices"
+  },
+  {
+    name: "channel challenge team",
+    color: "d4c5f9",
+    description: "Reserved for the Channel Challenge team"
+  },
+  {
+    name: "chore",
+    color: "4f08ac",
+    description: "Miscellaneous tasks"
+  },
+  {
+    name: "content",
+    color: "BC4183",
+    description: "Content additions, removals, or updates"
+  },
+  {
+    name: "content: members page",
+    color: "BC4183",
+    description: "Concerning the members page"
+  },
+  {
+    name: "content: member resources",
+    color: "BC4183",
+    description: "Concerning member resources"
+  },
+  {
+    name: "dependency",
+    color: "4f08ac",
+    description: "Updates or fixes a dependency"
+  },
+  {
+    name: "discussion",
+    color: "c5def5",
+    description: "Not ready for development"
+  },
+  {
+    name: "full members only",
+    color: "d4c5f9",
+    description:
+      "Reserved for members who have attended a Coffee Chat and are in our Slack"
+  },
+  {
+    name: "good first issue",
+    color: "008672",
+    description: "Reserved for first-time contributors"
+  },
+  {
+    name: "hacktoberfest",
+    color: "c96502",
+    description: "Reserved for Hacktoberfest"
+  },
+  {
+    name: "hacktoberfest-accepted",
+    color: "c96502",
+    description: "Marks as accepted for Hacktoberfest"
+  },
+  {
+    name: "help wanted",
+    color: "008672",
+    description: "Free to be worked on -- pick me!"
+  },
+  {
+    name: "infrastructure team",
+    color: "d4c5f9",
+    description: "Reserved for the Infrastructure team"
+  },
+  {
+    name: "learners only",
+    color: "008672",
+    description:
+    "Reserved for people new to coding and/or open-source contributions"
+  },
+  {
+    name: "maintenance",
+    color: "4f08ac",
+    description: "Maintenance tasks and refactoring"
+  },
+  {
+    name: "no code",
+    color: "0366d6",
+    description: "Does not require code knowledge"
+  },
+  {
+    name: "on hold",
+    color: "cfd3d7",
+    description: "Being held up or blocked by something"
+  },
+  {
+    name: "triage",
+    color: "c5def5",
+    description: "Needs review by `CODEOWNERS`"
+  }
+]
 
 repos.each do |repo|
-  new_labels.each do |new_label|
+  new_vc_labels.each do |new_label|
     client.add_label(repo.full_name, new_label[:label], new_label[:color], { description: new_label[:description] })
   end
 end
